@@ -14,7 +14,7 @@ startRef.addEventListener('click', startChangeBgc);
 stopRef.addEventListener('click', stopChangeBgc);
 
 let changColor = null;
-let changeBg = false;
+
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
@@ -25,16 +25,14 @@ function changeBcg() {
 }
 
 function startChangeBgc() {
-  if (changeBg) {
+  if (startRef) {
+    changeColor = setInterval(changeBcg, 1000);
+    startRef.setAttribute("disabled", true);
     return
   }
-  changeBg = true;
-  changeColor = setInterval(changeBcg, 1000);
-  startRef.setAttribute("disabled", true);
 }
 
 function stopChangeBgc() {
   clearInterval(changeColor);
-  changeBg = false
   startRef.removeAttribute("disabled", true);
 }
